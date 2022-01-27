@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <style>
+        .input-field label {
+            color: #000;
+        }
+
+        /* label focus color */
+        .input-field input:focus+label {
+            color: #d50000 !important;
+        }
+
+        /* label underline focus color */
+        .row .input-field input:focus {
+            border-bottom: 1px solid #d50000 !important;
+            box-shadow: 0 1px 0 0 #d50000 !important
+        }
+
+        .input-field textarea:focus+label {
+            color: #d50000 !important;
+        }
+
+        /* label underline focus color */
+        .row .input-field textarea:focus {
+            border-bottom: 1px solid #d50000 !important;
+            box-shadow: 0 1px 0 0 #d50000 !important
+        }
+    </style>
+    <title>registration form</title>
+</head>
+
+<body style="background-color: #d50000;">
+    <div class="container">
+        <div class="row">
+            <div class="col m9 offset-m2">
+                <div class="card">
+                    <div class="card-content">
+                        <h3>
+                            Registration
+                        </h3>
+
+                        <div class="form">
+                            <form action="http://localhost:8080/TheBloodDonation/reg" method="post" enctype="multipart/form-data">
+
+                                <div class="row">
+                                    <div class="input-field col s12 #b71c1c">
+                                        <input type="text" name="fname" required>
+                                        <label for="fname">First Name</label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input type="text" name="lname" required>
+                                        <label for="lname">Last Name</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input type="email" name="email" class="validate" required>
+                                        <label for="email">E mail</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input type="password" name="pwd" required>
+                                        <label for="pwd">Password</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input type="password" name="rpwd">
+                                        <label for="rpwd">Confirm Password</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input type="number" name="age">
+                                        <label for="age">Age</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input type="text" name="bg">
+                                        <label for="bg">Blood Group</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <textarea name="address" id="textarea1" class="materialize-textarea"></textarea>
+                                        <label for="address">Address</label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input type="number" name="pin" required>
+                                        <label for="no">Pin Code</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                      <input type="number" name="phno" maxlength="10">
+                                        <label for="phno">Phone no</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input type="tel" name="sphno" minlength="10" maxlength="10">
+                                        <label for="sphno">Secound Phone no</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <div class="file-field input-field">
+                                            <div class="btn red ">
+                                                <span>File</span>
+                                                <input type="file" name="filename">
+                                            </div>
+                                            <div class="file-path-wrapper">
+                                                <input name="filen" class="file-path validate" type="text"
+                                                    placeholder="Upload Your Document ">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <button class="btn waves-effect red" type="submit" name="regBtn">Submit
+
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
