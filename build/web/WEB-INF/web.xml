@@ -4,9 +4,17 @@
         <servlet-name>Registration</servlet-name>
         <servlet-class>javaDatabase.Registration</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogIn</servlet-name>
+        <servlet-class>javaDatabase.LogIn</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Registration</servlet-name>
         <url-pattern>/reg</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogIn</servlet-name>
+        <url-pattern>/log</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
