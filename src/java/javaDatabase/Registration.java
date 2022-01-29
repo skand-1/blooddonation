@@ -60,12 +60,16 @@ public class Registration extends HttpServlet {
             InputStream is;
             String filename;
             RequestDispatcher rs;
+            String date;
+            String gender;
             
             //assign variable
             fname = request.getParameter("fname");
             lname = request.getParameter("lname");
             phno = Long.parseLong(request.getParameter("phno"));
-
+            gender = request.getParameter("gender");
+            out.print(gender);
+            date = request.getParameter("date");
             email = request.getParameter("email");
             pass = request.getParameter("pwd");
 
@@ -75,16 +79,13 @@ public class Registration extends HttpServlet {
             address = request.getParameter("address");
             pin = Integer.parseInt(request.getParameter("pin"));
             sphno = Long.parseLong(request.getParameter("sphno"));
-            query = "INSERT INTO `registration_master`( `r_fname`, `r_lname`, `r_phno`, `r_email`, `r_password`, `r_age`, `r_bloodgroup`,`r_sphno`, `r_address`, `r_pincode`,`r_document`) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+            query = "INSERT INTO `registration_master`( `r_fname`, `r_lname`, `r_phno`, `r_email`, `r_password`, `r_age`, `r_bloodgroup`,`r_sphno`, `r_address`, `r_pincode`,`r_document`,r_dob) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
             connectionString = "jdbc:mysql://localhost:3306/blooddonation?zeroDateTimeBehavior=CONVERT_TO_NULL";
             rs = request.getRequestDispatcher("Registration.html");
             
             if(pass.equals(rpwd)){
-            } else {
-                out.print("hey , idiot write password properly");
-                rs.include(request, response);
-            }
-            
+                
+                
             //uploading file
             pr = request.getPart("filename");
             
@@ -113,8 +114,18 @@ public class Registration extends HttpServlet {
             pstmt.setString(9, address);
             pstmt.setInt(10, pin);
             pstmt.setString(11,filename);
+            pstmt.setString(12, date);
             out.println("raw affected " + pstmt.executeUpdate());
-            fos.close();
+            fos.close();    
+                
+                
+            } else {
+                out.print("hey , idiot write password properly");
+                rs.include(request, response);
+                this.destroy();
+            }
+            
+            
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
