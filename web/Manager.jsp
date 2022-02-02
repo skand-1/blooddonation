@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
  <%
-    if(request.getSession(false).getAttribute("username").toString().compareToIgnoreCase("manager")==0){
+    if(request.getSession(false).getAttribute("type").toString().compareToIgnoreCase("manager")==0){
       }
         else{
         RequestDispatcher rd = request.getRequestDispatcher("Login.html");

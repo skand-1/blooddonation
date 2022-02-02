@@ -6,6 +6,9 @@ package javaDatabase;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -29,28 +32,30 @@ public class LogIn extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, InterruptedException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        HttpSession ss  = request.getSession();
+        ss.setAttribute("type", "nothing");
         try{
-        boolean status = Check.checkRecord(request.getParameter("username"), request.getParameter("password"));
+        boolean status = Check.checkRecord(request.getParameter("phno"), request.getParameter("password"),out);
         if(status){
         String type = Check.getType();
         if(type.compareToIgnoreCase("admin")==0){
         RequestDispatcher rd = request.getRequestDispatcher("Admin.jsp");
             HttpSession session = request.getSession();
-            session.setAttribute("username", type);
+            session.setAttribute("type", type);
         rd.forward(request, response);}
         else if (type.compareToIgnoreCase("manager")==0){
         RequestDispatcher rd = request.getRequestDispatcher("Manager.jsp");
         HttpSession session = request.getSession();
-            session.setAttribute("username", type);
+            session.setAttribute("type", type);
         rd.forward(request, response);
         }
         else if(type.compareToIgnoreCase("donor")==0){
         RequestDispatcher rd = request.getRequestDispatcher("Donor.jsp");
         HttpSession session = request.getSession();
-            session.setAttribute("username", type);
+            session.setAttribute("type", type);
         rd.forward(request, response);        
             out.print("welcome user");
                 }
@@ -63,7 +68,9 @@ public class LogIn extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("Login.html");
             rd.include(request, response);
         }
-        }catch(Exception e){
+        }catch(IOException | SQLException | ServletException e){
+            out.print("hello");
+            out.print(e.getMessage());
         e.printStackTrace();
         }
     }
@@ -80,7 +87,11 @@ public class LogIn extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(LogIn.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -94,7 +105,11 @@ public class LogIn extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(LogIn.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

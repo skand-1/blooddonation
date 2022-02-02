@@ -62,13 +62,14 @@ public class Registration extends HttpServlet {
             RequestDispatcher rs;
             String date;
             String gender;
+            int weight;
             
             //assign variable
             fname = request.getParameter("fname");
             lname = request.getParameter("lname");
             phno = Long.parseLong(request.getParameter("phno"));
             gender = request.getParameter("gender");
-            out.print(gender);
+           weight = Integer.parseInt(request.getParameter("weight"));
             date = request.getParameter("date");
             email = request.getParameter("email");
             pass = request.getParameter("pwd");
@@ -79,7 +80,7 @@ public class Registration extends HttpServlet {
             address = request.getParameter("address");
             pin = Integer.parseInt(request.getParameter("pin"));
             sphno = Long.parseLong(request.getParameter("sphno"));
-            query = "INSERT INTO `registration_master`( `r_fname`, `r_lname`, `r_phno`, `r_email`, `r_password`, `r_age`, `r_bloodgroup`,`r_sphno`, `r_address`, `r_pincode`,`r_document`,r_dob) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+            query = "INSERT INTO `registration_master`( `r_fname`, `r_lname`, `r_phno`, `r_email`, `r_password`, `r_age`, `r_bloodgroup`,`r_sphno`, `r_address`, `r_pincode`,`r_document`,r_dob,r_gender,r_weight) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             connectionString = "jdbc:mysql://localhost:3306/blooddonation?zeroDateTimeBehavior=CONVERT_TO_NULL";
             rs = request.getRequestDispatcher("Registration.html");
             
@@ -88,7 +89,7 @@ public class Registration extends HttpServlet {
                 
             //uploading file
             pr = request.getPart("filename");
-            
+            System.out.println(pr.getSubmittedFileName());
             filename = pr.getSubmittedFileName();
             is = pr.getInputStream();
             byte[] b = new byte[is.available()];
@@ -115,6 +116,8 @@ public class Registration extends HttpServlet {
             pstmt.setInt(10, pin);
             pstmt.setString(11,filename);
             pstmt.setString(12, date);
+            pstmt.setString(13,gender);
+            pstmt.setInt(14, weight);
             out.println("raw affected " + pstmt.executeUpdate());
             fos.close();    
                 
@@ -127,13 +130,8 @@ public class Registration extends HttpServlet {
             
             
 
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            out.print(out);
-        }catch( NumberFormatException e){
-        
-        out.print(e.getMessage());
-        }catch( SQLException e){
+        } catch(IOException | ClassNotFoundException | NumberFormatException | SQLException | ServletException e){
+        e.printStackTrace();
         out.print(e.getMessage());
         }
         
