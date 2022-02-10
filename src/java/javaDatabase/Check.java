@@ -17,7 +17,7 @@ public static boolean checkRecord(String username , String password,PrintWriter 
     Long phno;
     
     conString = "jdbc:mysql://localhost:3306/blooddonation?zeroDateTimeBehavior=CONVERT_TO_NULL";
-    query = "select u_type from user_master  where u_phno = ? and u_password = ?";
+    query = "select u_type,u_id from user_master  where u_phno = ? and u_password = ?";
     boolean status=true;
     
     try{
@@ -45,5 +45,7 @@ public static String getType() throws SQLException{
 
 return rs.getString("u_type");
 }
-    
+    public static int getId() throws SQLException{
+    return rs.getInt("u_id");
+    }
 }

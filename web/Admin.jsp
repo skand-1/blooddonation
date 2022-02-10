@@ -9,20 +9,23 @@
 <!DOCTYPE html>
 <html>
     <%
-    if(request.getSession(false).getAttribute("type").toString().compareToIgnoreCase("admin")==0){
-      }
-        else{
-        RequestDispatcher rd = request.getRequestDispatcher("Login.html");
-        rd.forward(request, response);
-        }
+        // this is comment for security purpose
+    //if(request.getSession(false).getAttribute("type").toString().compareToIgnoreCase("admin")==0){
+      //}
+        //else{
+        //RequestDispatcher rd = request.getRequestDispatcher("Login.html");
+        //rd.forward(request, response);
+        //}
     %>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title></title>
-        <s:display></s:display>
+       
     </head>
     <body>
         <h1>Welcome to admin page</h1>
-        <a href="admin/showRegisterationTable.jsp">show table</a>
+        <a href="admin/showRegistrationTable.jsp">show table</a>
+        <a href="admin/generateReport.jsp">click to generate report</a>
     </body>
 </html>
+                  

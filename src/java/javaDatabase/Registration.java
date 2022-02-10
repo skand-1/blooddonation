@@ -95,7 +95,7 @@ public class Registration extends HttpServlet {
             byte[] b = new byte[is.available()];
             is.read(b);
             
-            path = request.getRealPath("/") + "userfile" + File.separator + pr.getSubmittedFileName();
+            path = request.getRealPath("/")+ "userfile" + File.separator + pr.getSubmittedFileName();
             fos = new FileOutputStream(path);
             fos.write(b);
            

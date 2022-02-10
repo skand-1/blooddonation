@@ -8,6 +8,22 @@
         <servlet-name>LogIn</servlet-name>
         <servlet-class>javaDatabase.LogIn</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Img</servlet-name>
+        <servlet-class>javaDatabase.Img</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DisplayImage</servlet-name>
+        <servlet-class>javaDatabase.DisplayImage</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EligibleDonor</servlet-name>
+        <servlet-class>javaDatabase.EligibleDonor</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GenerateReport</servlet-name>
+        <servlet-class>javaDatabase.GenerateReport</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Registration</servlet-name>
         <url-pattern>/reg</url-pattern>
@@ -16,10 +32,32 @@
         <servlet-name>LogIn</servlet-name>
         <url-pattern>/log</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Img</servlet-name>
+        <url-pattern>/img</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DisplayImage</servlet-name>
+        <url-pattern>/dis</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EligibleDonor</servlet-name>
+        <url-pattern>/eli</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GenerateReport</servlet-name>
+        <url-pattern>/gen</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/Login.html</location>
+    </error-page>
 </web-app>

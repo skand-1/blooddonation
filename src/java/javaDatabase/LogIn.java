@@ -35,27 +35,30 @@ public class LogIn extends HttpServlet {
             throws ServletException, IOException, InterruptedException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        HttpSession ss  = request.getSession();
-        ss.setAttribute("type", "nothing");
+       
         try{
         boolean status = Check.checkRecord(request.getParameter("phno"), request.getParameter("password"),out);
         if(status){
         String type = Check.getType();
+        int id = Check.getId();
         if(type.compareToIgnoreCase("admin")==0){
         RequestDispatcher rd = request.getRequestDispatcher("Admin.jsp");
             HttpSession session = request.getSession();
             session.setAttribute("type", type);
+            session.setAttribute("id", id);
         rd.forward(request, response);}
         else if (type.compareToIgnoreCase("manager")==0){
         RequestDispatcher rd = request.getRequestDispatcher("Manager.jsp");
         HttpSession session = request.getSession();
             session.setAttribute("type", type);
+            session.setAttribute("id", id);
         rd.forward(request, response);
         }
         else if(type.compareToIgnoreCase("donor")==0){
         RequestDispatcher rd = request.getRequestDispatcher("Donor.jsp");
         HttpSession session = request.getSession();
             session.setAttribute("type", type);
+            session.setAttribute("id", id);
         rd.forward(request, response);        
             out.print("welcome user");
                 }
